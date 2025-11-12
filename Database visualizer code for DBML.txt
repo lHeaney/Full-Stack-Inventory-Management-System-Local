@@ -1,0 +1,71 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+// https://dbdiagram.io/d
+
+
+Table users {
+  user_id integer [primary key]
+  username varchar
+  role varchar
+  created_at timestamp
+  password String
+}
+Table roles {
+  role String [pk]
+  access_level integer
+  geographic_department String
+}
+
+Table warehouses {
+  warehouse_id integer [primary key]
+  total_capacity integer
+  used_total_capacity integer
+  cold_capacity integer
+  used_cold_capacity integer
+  freezing_capacity integer
+  used_freezing_capacity integer
+  room_temp_capacity integer
+  used_room_temp_capacity integer
+  latitude double
+  longitude double
+  address String
+  state String
+  zip_code number
+  open_time_minutes integer
+  close_time_minutes integer
+  access_level integer
+  geographic_department String
+}
+Table items_data {
+  item_id integer [pk]
+  name String
+  requires_cold boolean
+  requires_freezing boolean
+  requires_room_temp boolean
+  expire_days integer
+  sku String
+  description String
+}
+Table inventory {
+  order_number integer [primary key]
+  item_id integer
+  amount integer
+  warehouse_id integer
+  will_expire date
+}
+
+
+
+Ref user_roles: users.role < roles.role 
+
+
+
+
+
+Ref: "items_data"."item_id" < "inventory"."item_id"
+
+Ref: "inventory"."warehouse_id" > "warehouses"."warehouse_id"
+
+Ref: "roles"."access_level" < "warehouses"."access_level"
+
+Ref: "roles"."geographic_department" < "warehouses"."geographic_department"
