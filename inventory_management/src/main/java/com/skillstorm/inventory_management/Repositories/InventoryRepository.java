@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.skillstorm.inventory_management.Models.Order;
 
+
 /**
  *
  * @author firef
@@ -18,6 +19,11 @@ public interface InventoryRepository  extends JpaRepository<Order, Integer>
 {
 
 
+
     // public List<Order> findAllOrders();
+
+    // @Modifying
+    // public boolean insertOrder(Order newOrder);
+
 
 }

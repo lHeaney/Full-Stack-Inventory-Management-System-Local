@@ -5,7 +5,13 @@
 
 package com.skillstorm.inventory_management.Services;
 
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
+import com.skillstorm.inventory_management.Models.Order;
+import com.skillstorm.inventory_management.Repositories.InventoryRepository;
 
 /**
  *
@@ -13,10 +19,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class InventoryService {
-    // public final InventoryRepository inventoryRepo;
-    // public InventoryService(InventoryRepository inventoryRepo)
-    // {
-    //     this.inventoryRepo=inventoryRepo;
-    // }
+    public final InventoryRepository inventoryRepo;
+    public InventoryService(InventoryRepository inventoryRepo)
+    {
+        this.inventoryRepo=inventoryRepo;
+    }
+
+   public List<Order> findAllOrders()
+   {
+    return inventoryRepo.findAll();
+   }
+
+   public boolean createOrder(Order order)
+   {
+        if(order==null)
+            return false;
+        inventoryRepo.save(order);
+        return true;
+   }
 
 }
