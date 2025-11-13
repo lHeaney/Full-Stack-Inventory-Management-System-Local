@@ -5,10 +5,16 @@
 
 package com.skillstorm.inventory_management.Models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 /**
  *
  * @author firef
  */
+@Entity
 public class Order {
+    @Id
+    int order_number;
 
 }

@@ -4,11 +4,20 @@
  */
 
 package com.skillstorm.inventory_management.Repositories;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.skillstorm.inventory_management.Models.Order;
 
 /**
  *
  * @author firef
  */
-public interface InventoryRepository {
+@Repository
+public interface InventoryRepository  extends JpaRepository<Order, Integer>
+{
+
+
+    // public List<Order> findAllOrders();
 
 }
