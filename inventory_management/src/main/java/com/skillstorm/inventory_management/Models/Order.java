@@ -9,6 +9,8 @@ import java.sql.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -22,7 +24,8 @@ public class Order {
 
     static int current_order_number;
     @Id
-    // @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column
     int order_number;
 
     @Column
@@ -35,7 +38,6 @@ public class Order {
     Date expirationDate;
 
     public Order(int amount, int item_id, int warehouse_id) {
-        this.order_number = ++current_order_number;
         this.amount = amount;
         this.item_id = item_id;
         this.warehouse_id = warehouse_id;
