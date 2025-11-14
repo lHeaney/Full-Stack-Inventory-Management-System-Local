@@ -2,6 +2,8 @@
 
 package com.skillstorm.inventory_management.Controllers;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,10 +29,10 @@ public class InventoryController {
         this.inventoryService = ivService;
     }
 
-    // @GetMapping("/orders")
-    // public List<Order> getOrders() {
-    //    return  inventoryService.findAll();
-    // }
+    @GetMapping("/orders")
+    public List<Order> getOrders() {
+       return  inventoryService.inventoryRepo.findAll();
+    }
 
     @GetMapping("/testing")
     public String getMethodName() {

@@ -4,20 +4,19 @@
  */
 
 package com.skillstorm.inventory_management.Repositories;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.skillstorm.inventory_management.Models.Order;
-
+import com.skillstorm.inventory_management.Models.Item;
 
 /**
  *
  * @author firef
  */
 @Repository
-public interface InventoryRepository  extends JpaRepository<Order, Integer>
-{
+public interface ItemDataRepository extends JpaRepository<Item, Integer>{
 
-
+    //include check to make sure we do not already have an item with the same name
 
 }
