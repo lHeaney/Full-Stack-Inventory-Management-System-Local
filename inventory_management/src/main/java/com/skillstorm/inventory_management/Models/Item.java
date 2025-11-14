@@ -9,6 +9,8 @@ import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -21,7 +23,7 @@ import jakarta.persistence.Table;
 public class Item {
 
     @Id
-    // @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column
     int item_id;
 
@@ -52,7 +54,7 @@ public class Item {
     }
 
     public Item(String name, String sku) {
-        this.item_id = 0;
+    //     this.item_id = 0;
         this.name = name;
         this.sku = sku;
         this.description="No Description Provided";
@@ -64,7 +66,7 @@ public class Item {
 
     public Item()
     {
-        this.item_id = 0;
+        // this.item_id = 0;
         this.name = "unknown";
         this.sku = "00000000";
         this.description="No Description Provided";

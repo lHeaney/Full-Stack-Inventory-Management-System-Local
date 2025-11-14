@@ -48,7 +48,15 @@ public class ItemController {
         //     System.out.println(item.toString());
 
         // return false;
-        return itemDataService.createItem(item);
+        return itemDataService.createItem(
+            new Item(item.getDescription(),
+                item.getExpire_days(),
+                item.getName(),
+                item.isRequires_cold(),
+                item.isRequires_freezing(),
+                item.isRequires_room_temp(),
+                item.getSku())
+                );
 
     }
     
