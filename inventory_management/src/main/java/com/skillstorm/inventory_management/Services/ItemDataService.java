@@ -35,6 +35,9 @@ public class ItemDataService {
         itemDataRepo.save(item);
         return true;
     }
+    public void deleteItem(int id){
+        itemDataRepo.deleteById(id);
+    }
 
     public List<Item> getItemList()
     {

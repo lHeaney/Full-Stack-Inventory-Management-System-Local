@@ -8,13 +8,13 @@ package com.skillstorm.inventory_management.Repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.skillstorm.inventory_management.Models.Item;
+import com.skillstorm.inventory_management.Models.Warehouse;
 
 /**
  *
  * @author firef
  */
 @Repository
-public interface ItemDataRepository extends JpaRepository<Item, Integer>{
+public interface WarehouseRepository extends JpaRepository<Warehouse, Integer>{
 
 }
