@@ -6,6 +6,7 @@
 package com.skillstorm.inventory_management.Models;
 
 import java.sql.Date;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,59 +47,109 @@ public class Order {
     }
     public Order()
     {
-        this.order_number = ++current_order_number;
-        this.amount = ++current_order_number;
-        this.item_id = ++current_order_number;
-        this.warehouse_id = ++current_order_number;
+        this.amount = 0;
+        this.item_id = 0;
+        this.warehouse_id = 0;
         expirationDate = new Date(16513518);
     }
 
-    // public Order(int amount, Date expirationDate, int item_id, int warehouse_id) {
-    //     this.amount = amount;
-    //     this.expirationDate = expirationDate;
-    //     this.item_id = item_id;
-    //     this.warehouse_id = warehouse_id;
-    // }
+    public Order(int amount, Date expirationDate, int item_id, int warehouse_id) {
+        this.amount = amount;
+        this.expirationDate = expirationDate;
+        this.item_id = item_id;
+        this.warehouse_id = warehouse_id;
+    }
 
-    // public int getOrder_number() {
-    //     return order_number;
-    // }
+    public int getOrder_number() {
+        return order_number;
+    }
 
-    // public void setOrder_number(int order_number) {
-    //     this.order_number = order_number;
-    // }
+    public void setOrder_number(int order_number) {
+        this.order_number = order_number;
+    }
 
-    // public int getItem_id() {
-    //     return item_id;
-    // }
+    public int getItem_id() {
+        return item_id;
+    }
 
-    // public void setItem_id(int item_id) {
-    //     this.item_id = item_id;
-    // }
+    public void setItem_id(int item_id) {
+        this.item_id = item_id;
+    }
 
-    // public int getAmount() {
-    //     return amount;
-    // }
+    public int getAmount() {
+        return amount;
+    }
 
-    // public void setAmount(int amount) {
-    //     this.amount = amount;
-    // }
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
-    // public int getWarehouse_id() {
-    //     return warehouse_id;
-    // }
+    public int getWarehouse_id() {
+        return warehouse_id;
+    }
 
-    // public void setWarehouse_id(int warehouse_id) {
-    //     this.warehouse_id = warehouse_id;
-    // }
+    public void setWarehouse_id(int warehouse_id) {
+        this.warehouse_id = warehouse_id;
+    }
 
-    // public Date getExpirationDate() {
-    //     return expirationDate;
-    // }
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
 
-    // public void setExpirationDate(Date expirationDate) {
-    //     this.expirationDate = expirationDate;
-    // }
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + this.order_number;
+        hash = 29 * hash + this.item_id;
+        hash = 29 * hash + this.amount;
+        hash = 29 * hash + this.warehouse_id;
+        hash = 29 * hash + Objects.hashCode(this.expirationDate);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Order other = (Order) obj;
+        if (this.order_number != other.order_number) {
+            return false;
+        }
+        if (this.item_id != other.item_id) {
+            return false;
+        }
+        if (this.amount != other.amount) {
+            return false;
+        }
+        if (this.warehouse_id != other.warehouse_id) {
+            return false;
+        }
+        return Objects.equals(this.expirationDate, other.expirationDate);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Order{");
+        sb.append("order_number=").append(order_number);
+        sb.append(", item_id=").append(item_id);
+        sb.append(", amount=").append(amount);
+        sb.append(", warehouse_id=").append(warehouse_id);
+        sb.append(", expirationDate=").append(expirationDate);
+        sb.append('}');
+        return sb.toString();
+    }
 
 
 

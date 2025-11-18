@@ -321,5 +321,32 @@ public class Warehouse {
         return Objects.equals(this.short_name, other.short_name);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Warehouse{");
+        sb.append("warehouse_id=").append(warehouse_id);
+        sb.append(", total_capacity=").append(total_capacity);
+        sb.append(", used_total_capacity=").append(used_total_capacity);
+        sb.append(", cold_capacity=").append(cold_capacity);
+        sb.append(", used_cold_capacity=").append(used_cold_capacity);
+        sb.append(", freezing_capacity=").append(freezing_capacity);
+        sb.append(", used_freezing_capacity=").append(used_freezing_capacity);
+        sb.append(", room_temp_capacity=").append(room_temp_capacity);
+        sb.append(", used_room_temp_capacity=").append(used_room_temp_capacity);
+        sb.append(", latitude=").append(latitude);
+        sb.append(", longitude=").append(longitude);
+        sb.append(", address=").append(address);
+        sb.append(", state=").append(state);
+        sb.append(", zip_code=").append(zip_code);
+        sb.append(", open_time_minutes=").append(open_time_minutes);
+        sb.append(", close_time_minutes=").append(close_time_minutes);
+        sb.append(", access_level=").append(access_level);
+        sb.append(", geographic_department=").append(geographic_department);
+        sb.append(", short_name=").append(short_name);
+        sb.append('}');
+        return sb.toString();
+    }
+
 
 }

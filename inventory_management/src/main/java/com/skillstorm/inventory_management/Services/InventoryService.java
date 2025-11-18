@@ -30,6 +30,22 @@ public class InventoryService {
     return inventoryRepo.findAll();
    }
 
+   public boolean updateOrder(int id, Order order)
+   {
+    if(inventoryRepo.existsById(id))
+    {
+        try{
+            System.out.println(order.toString());
+            inventoryRepo.save(order);
+        return true;
+        }catch(Exception e)
+        {
+            return false;
+        }
+    }
+    return false;
+   }
+
    public boolean createOrder(Order order)
    {
         if(order==null)

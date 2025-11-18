@@ -41,6 +41,7 @@ public class WarehouseService {
             warehouseRepo.save(warehouse);
             return true;
         }
+        System.out.println("Null warehouse");
         return false;
 
     }
