@@ -55,11 +55,11 @@ public class WarehouseController {
     public ResponseEntity<Object> addWarehouse(@RequestBody Warehouse warehouse) {
        
         try {
-            System.out.println(warehouse.toString());
+            // 
             warehouseService.addWarehouse(warehouse);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
