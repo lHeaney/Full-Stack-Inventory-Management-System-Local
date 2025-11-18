@@ -5,8 +5,18 @@
 
 package com.skillstorm.inventory_management.Controllers;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.skillstorm.inventory_management.Models.Warehouse;
+import com.skillstorm.inventory_management.Services.WarehouseService;
+
 
 /**
  *
@@ -15,5 +25,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/warehouses")
 public class WarehouseController {
+    private final WarehouseService warehouseService;
+    public WarehouseController(WarehouseService warehouseService)
+    {
+        this.warehouseService = warehouseService;
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<Warehouse>> getWarehouses() {
+
+        return new ResponseEntity<>(warehouseService.getAllWarehouseList(), HttpStatus.OK);
+    }
+
+    @GetMapping("/warehouse")
+    public ResponseEntity<Object> getWarehouses(@RequestParam int id)
+    {
+        try {
+            return new ResponseEntity<>(warehouseService.getWarehouseByID(id).get(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
+        }
+        
+        
+    }
+    
+    
 
 }
