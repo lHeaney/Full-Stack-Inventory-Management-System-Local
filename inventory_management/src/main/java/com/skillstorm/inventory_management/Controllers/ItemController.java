@@ -8,6 +8,7 @@ package com.skillstorm.inventory_management.Controllers;
 import java.util.List;
 
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,6 +29,7 @@ import com.skillstorm.inventory_management.Services.ItemDataService;
  * @author firef
  */
 @RestController
+@CrossOrigin()
 @RequestMapping("/items_data")
 public class ItemController {
     private final ItemDataService itemDataService;
