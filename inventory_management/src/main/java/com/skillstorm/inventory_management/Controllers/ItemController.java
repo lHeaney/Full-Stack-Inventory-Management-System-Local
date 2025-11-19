@@ -10,12 +10,16 @@ import java.util.List;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.inventory_management.Models.Item;
 import com.skillstorm.inventory_management.Services.ItemDataService;
+
+
 
 
 
@@ -34,10 +38,19 @@ public class ItemController {
 
     
 
-    @GetMapping("/items")
+    @GetMapping("")
     public List<Item> getAllItems() {
         
         return itemDataService.getItemList();
+    }
+    @GetMapping("/item")
+    public Item getItem(@RequestParam int id) {
+        return itemDataService.getItemById(id);
+    }
+    
+    @PutMapping("item")
+    public boolean updateItemData(@RequestParam int id, @RequestBody Item item) {
+        return itemDataService.putItem(id,item);
     }
 
   

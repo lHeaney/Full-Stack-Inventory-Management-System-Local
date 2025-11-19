@@ -64,7 +64,11 @@ public class Warehouse {
     String short_name;
 
     public Warehouse() {
-
+        this.access_level = 5;
+        this.geographic_department = "unkown";
+        this.short_name = "DEFAULT";
+        this.total_capacity = 0;
+        this.state = "default";
     }
 
     public Warehouse(int access_level, String geographic_department, String short_name, int total_capacity) {
@@ -72,6 +76,7 @@ public class Warehouse {
         this.geographic_department = geographic_department;
         this.short_name = short_name;
         this.total_capacity = total_capacity;
+        this.state = "default";
     }
     
 

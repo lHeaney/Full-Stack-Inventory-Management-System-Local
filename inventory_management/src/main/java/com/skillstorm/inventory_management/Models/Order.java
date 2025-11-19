@@ -23,7 +23,6 @@ import jakarta.persistence.Table;
 @Table(name="inventory")
 public class Order {
 
-    static int current_order_number;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column

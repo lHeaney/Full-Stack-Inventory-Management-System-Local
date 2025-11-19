@@ -43,5 +43,16 @@ public class ItemDataService {
     {
         return itemDataRepo.findAll();
     }
+    public Item getItemById(int id)
+    {
+        return itemDataRepo.findById(id).get();
+    }
+    public boolean putItem(int id, Item item)
+    {
+        if(item==null)
+            return false;
+        item.setItem_id(id);
+        return itemDataRepo.save(item)!=null;
+    }
 
 }

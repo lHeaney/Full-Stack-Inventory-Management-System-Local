@@ -7,6 +7,7 @@ package com.skillstorm.inventory_management.Services;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -29,12 +30,18 @@ public class InventoryService {
    {
     return inventoryRepo.findAll();
    }
+   public Optional<Order> findOrderById(int id)
+   {
+    return inventoryRepo.findById(id);
+   }
 
    public boolean updateOrder(int id, Order order)
    {
+
     if(inventoryRepo.existsById(id))
     {
         try{
+            order.setOrder_number(id);
             System.out.println(order.toString());
             inventoryRepo.save(order);
         return true;

@@ -50,4 +50,18 @@ public class WarehouseService {
         warehouseRepo.deleteById(id);
     }
 
+    public void updateWarehouse(int id, Warehouse warehouse)
+    {
+        if(warehouseRepo.existsById(id))
+        {
+            warehouse.setWarehouse_id(id);
+            warehouseRepo.save(warehouse);
+        }
+        else
+        {
+           System.out.println("warehouse does not exist!  "+id);
+        }
+
+    }
+
 }

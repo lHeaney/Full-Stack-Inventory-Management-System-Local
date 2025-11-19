@@ -17,4 +17,9 @@ import com.skillstorm.inventory_management.Models.Warehouse;
 @Repository
 public interface WarehouseRepository extends JpaRepository<Warehouse, Integer>{
 
+    // @Transactional
+    // @Query("update warehouses set total_capacity=?2 where id=?1")
+    // public void updateWarehouse(int id, int total_capacity);
+
+
 }
