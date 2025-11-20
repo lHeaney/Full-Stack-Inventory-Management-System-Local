@@ -31,7 +31,16 @@ const url = "http://localhost:8080/warehouses"
 export default function Warehouses(){
 
     const [value, setValue]=React.useState(0)
-    const changetab=(Event, newValue)=>{setValue(newValue)}
+    const changetab=(Event, newValue)=>{
+        setValue(newValue)
+        fetch(url)
+        .then(data=> data.json())
+        .then(jsonData=>{
+            setWareHouses(jsonData)
+            console.log(jsonData)
+        })
+        .catch(error=>console.error(error))
+    }
     const [warehouses, setWareHouses] = useState([]);
     useEffect(()=>{
         fetch(url)
@@ -41,7 +50,7 @@ export default function Warehouses(){
             console.log(jsonData)
         })
         .catch(error=>console.error(error))
-    }, [])
+    },[])
 
     return(
     <>

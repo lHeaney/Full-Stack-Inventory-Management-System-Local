@@ -33,7 +33,16 @@ const url = "http://localhost:8080/inventory"
 export default function Orders(){
 
     const [value, setValue]=React.useState(0)
-    const changetab=(Event, newValue)=>{setValue(newValue)}
+    const changetab=(Event, newValue)=>{
+        setValue(newValue)
+        fetch(url)
+        .then(data=> data.json())
+        .then(jsonData=>{
+            setOrders(jsonData)
+            console.log(jsonData)
+        })
+        .catch(error=>console.error(error))
+    }
     const [orders, setOrders] = useState([]);
     useEffect(()=>{
         fetch(url)

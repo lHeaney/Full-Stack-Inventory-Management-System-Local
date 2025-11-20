@@ -34,7 +34,16 @@ const url = "http://localhost:8080/items_data"
 export default function Item(){
 
     const [value, setValue]=React.useState(0)
-    const changetab=(Event, newValue)=>{setValue(newValue)}
+    const changetab=(Event, newValue)=>{
+        setValue(newValue)
+        fetch(url)
+        .then(data=> data.json())
+        .then(jsonData=>{
+            setItems(jsonData)
+            console.log(jsonData)
+        })
+        .catch(error=>console.error(error))
+    }
     const [items, setItems] = useState([]);
     useEffect(()=>{
         fetch(url)

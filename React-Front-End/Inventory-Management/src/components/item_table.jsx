@@ -2,6 +2,7 @@
 import Item from "./item";
 import Table from "@mui/material/Table";
 
+
 export default function ItemTable({itemData}){
 
 
@@ -24,12 +25,12 @@ export default function ItemTable({itemData}){
             {itemData.map((item, index) =>{
                 return(<>
                     <tr key={item.item_id}>
-                        <td>{item.id}</td>
+                        <td>{item.item_id}</td>
                         <td>{item.name}</td>
-                        <td>{item.requires_cold}</td>
-                        <td>{item.requires_freezing}</td>
-                        <td>{item.requires_room_temp}</td>
-                        <td>{item.expire_days}</td>
+                        <td>{item.requires_cold? "true" : "false"}</td>
+                        <td>{item.requires_freezing ? "true" : "false"}</td>
+                        <td>{item.requires_room_temp? "true" : "false"}</td>
+                        <td>{item.expire_days<1 ? "never" : item.expire_days +" days"}</td>
                         <td>{item.description}</td>
                         <td>{item.sku}</td>
                     </tr>    

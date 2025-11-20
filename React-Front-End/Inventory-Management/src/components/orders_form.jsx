@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import WarehouseTable from "./warehouse_table";
-import { padding, width } from "@mui/system";
+import { Grid, padding, width } from "@mui/system";
 import TextField from "@mui/material/TextField"
 import React from "react";
 
@@ -36,14 +36,29 @@ export default function OrderForm(){
     return( <>
     
         <form onSubmit={handleSubmit}>
-            <label htmlFor="origin_warehouse">Origin Warehouse</label><TextField id="origin_warehouse" name="origin_warehouse" type="text"/>
-            <hr />
-            <label htmlFor="destination_warehouse">Destination Warehouse </label><TextField id="destination_warehouse" name="destination_warehouse" type="text"/>
-            <hr />
-            <label htmlFor="item">Item</label><TextField id="item_id" name="item_id" type="text"/>
-            <hr />
-            <label htmlFor="amount">Amount</label><TextField id="amount" name="amount" type="text"/>
-            <hr />
+        <Grid container spacing={2}>
+                <Grid size={4}> <label htmlFor="origin_warehouse">Origin Warehouse</label>
+                </Grid>
+                <Grid size={8}><TextField id="origin_warehouse" name="origin_warehouse" type="text"/>
+                </Grid>
+                <Grid size={4}><label htmlFor="destination_warehouse">Destination Warehouse </label>
+                </Grid>
+                <Grid size={8}><TextField id="destination_warehouse" name="destination_warehouse" type="text"/>
+                </Grid>
+                <Grid size={4}> <label htmlFor="item">Item</label>
+                </Grid>
+                <Grid size={8}><TextField id="item_id" name="item_id" type="text"/>
+                </Grid>
+                <Grid size={4}><label htmlFor="amount">Amount</label>
+                </Grid>
+                <Grid size={8}><TextField id="amount" name="amount" type="text"/>
+                </Grid>
+                <Grid size={4}>
+                </Grid>
+                <Grid size={8}>
+                </Grid>
+                
+        </Grid>
             <button type="submit">Submit</button>
         </form>
 
