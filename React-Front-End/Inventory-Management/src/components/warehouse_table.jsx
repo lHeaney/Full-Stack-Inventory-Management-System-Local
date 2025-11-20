@@ -8,8 +8,6 @@ export default function WarehouseTable({warehouseData}){
     return( <>
 
     
-    
-    <Typography>This is a warehouse table</Typography>
     <Table>
         <thead>
             <tr>

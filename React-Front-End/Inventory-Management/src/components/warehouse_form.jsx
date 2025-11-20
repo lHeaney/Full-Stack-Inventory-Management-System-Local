@@ -16,26 +16,23 @@ export default function WarehouseForm(){
 
         const newWarehouse=
         {
-            total_capacity:data.total_capacity,
-            geographic_department:data.geographic_department,
-            short_name:data.short_name
+            total_capacity:formData.get("total_capacity"),
+            geographic_department:formData.get("geographic_department"),
+            short_name:formData.get("short_name")
 
         }
         fetch(url, {
-            Method:"Post",
-            Headers:{"Content Type":"application/json"},
+            method:"Post",
+            headers:{"Content-Type":"application/json"},
             body:JSON.stringify(newWarehouse)
         })
         .then(data=>data.json())
-        .then((jsonData)={
-
-            // event.target.reset()
-        }).catch(error=>console.error(error))
+        .then()
+        .catch(error=>console.error(error))
     }
 
     return( <>
     
-    <Typography>This is a warehouse form</Typography>
         <form onSubmit={handleSubmit}>
             <label htmlFor="geographic_department">geographic department</label><TextField id="geographic_department" name="geographic_department" type="text"/>
             <hr />

@@ -7,7 +7,6 @@ package com.skillstorm.inventory_management.Controllers;
 
 import java.util.List;
 
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,9 +55,10 @@ public class ItemController {
     }
 
   
-    @PostMapping(value="/items", consumes=MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/items")
     public boolean addNewItem(@RequestBody Item item){
 
+        System.out.println(item.toString());
         // if(item!=null)
         //     System.out.println(item.toString());
 

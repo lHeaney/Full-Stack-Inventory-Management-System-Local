@@ -8,6 +8,8 @@ import Tab from "@mui/material/Tab"
 import * as React from "react";
 import Box from "@mui/material/Box"
 import WarehouseForm from "./warehouse_form"
+import ItemTable from "./item_table";
+import ItemForm from "./item_form";
 
 
 function CustomTabPanel(props){
@@ -27,17 +29,18 @@ function tabProps(index)
         "aria-controls":'tabpanel-${index}',
     }
 }
-const url = "http://localhost:8080/warehouses"
-export default function Warehouses(){
+const url = "http://localhost:8080/items_data"
+
+export default function Item(){
 
     const [value, setValue]=React.useState(0)
     const changetab=(Event, newValue)=>{setValue(newValue)}
-    const [warehouses, setWareHouses] = useState([]);
+    const [items, setItems] = useState([]);
     useEffect(()=>{
         fetch(url)
         .then(data=> data.json())
         .then(jsonData=>{
-            setWareHouses(jsonData)
+            setItems(jsonData)
             console.log(jsonData)
         })
         .catch(error=>console.error(error))
@@ -47,24 +50,18 @@ export default function Warehouses(){
     <>
     <Box sx = {{borderBottom:1, borderColor:'divider'}}>
         <Tabs value={value} onChange={changetab} aria-label="warehouse_tabs">
-            <Tab label="Overview" {...tabProps(0)}/>
-            <Tab label="All Warehouses" {...tabProps(1)}/>
-            <Tab label="New Warehouse" {...tabProps(2)}/>
+            <Tab label="All Items" {...tabProps(0)}/>
+            <Tab label="Add New Item" {...tabProps(1)}/>
+            {/* <Tab label="New Warehouse" {...tabProps(2)}/> */}
         </Tabs>
     </Box>
     <CustomTabPanel value={value} index = {0}>
-
+        <ItemTable itemData={items}/>
     </CustomTabPanel>
     <CustomTabPanel value={value} index = {1}>
         <Container>
-            <h1>This is a table of warehouse data</h1>
+            <ItemForm />
         </Container>
-        <Container>
-            <WarehouseTable warehouseData={warehouses}/>
-        </Container>
-    </CustomTabPanel>
-    <CustomTabPanel value={value} index = {2}>
-        <WarehouseForm />
     </CustomTabPanel>
        
     </>);

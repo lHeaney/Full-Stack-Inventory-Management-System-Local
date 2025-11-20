@@ -7,7 +7,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab"
 import * as React from "react";
 import Box from "@mui/material/Box"
-import WarehouseForm from "./warehouse_form"
+import OrderTable from "./orders_table";
+import OrderForm from "./orders_form";
 
 
 function CustomTabPanel(props){
@@ -27,17 +28,18 @@ function tabProps(index)
         "aria-controls":'tabpanel-${index}',
     }
 }
-const url = "http://localhost:8080/warehouses"
-export default function Warehouses(){
+const url = "http://localhost:8080/inventory"
+
+export default function Orders(){
 
     const [value, setValue]=React.useState(0)
     const changetab=(Event, newValue)=>{setValue(newValue)}
-    const [warehouses, setWareHouses] = useState([]);
+    const [orders, setOrders] = useState([]);
     useEffect(()=>{
         fetch(url)
         .then(data=> data.json())
         .then(jsonData=>{
-            setWareHouses(jsonData)
+            setOrders(jsonData)
             console.log(jsonData)
         })
         .catch(error=>console.error(error))
@@ -46,25 +48,19 @@ export default function Warehouses(){
     return(
     <>
     <Box sx = {{borderBottom:1, borderColor:'divider'}}>
-        <Tabs value={value} onChange={changetab} aria-label="warehouse_tabs">
-            <Tab label="Overview" {...tabProps(0)}/>
-            <Tab label="All Warehouses" {...tabProps(1)}/>
-            <Tab label="New Warehouse" {...tabProps(2)}/>
+        <Tabs value={value} onChange={changetab} aria-label="orders_tabs">
+            <Tab label="All Orders" {...tabProps(0)}/>
+            <Tab label="New Order" {...tabProps(1)}/>
+            {/* <Tab label="New Warehouse" {...tabProps(2)}/> */}
         </Tabs>
     </Box>
     <CustomTabPanel value={value} index = {0}>
-
+        <OrderTable orderData={orders}/>
     </CustomTabPanel>
     <CustomTabPanel value={value} index = {1}>
         <Container>
-            <h1>This is a table of warehouse data</h1>
+            <OrderForm />
         </Container>
-        <Container>
-            <WarehouseTable warehouseData={warehouses}/>
-        </Container>
-    </CustomTabPanel>
-    <CustomTabPanel value={value} index = {2}>
-        <WarehouseForm />
     </CustomTabPanel>
        
     </>);

@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Warehouses from './components/warehouses'
+import TopBar from './components/top_bar'
 
 
 
@@ -19,7 +20,7 @@ function App() {
         <Typography variant='h2'>
           MUI example yea?
         </Typography>
-        <Warehouses />
+        <TopBar />
       </Container>
       
     </>
