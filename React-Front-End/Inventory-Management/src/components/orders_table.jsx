@@ -41,7 +41,7 @@ export default function OrderTable({orderData}){
                 return(<>
                     <tr key={order.order_number}>
                         <td>{order.order_number}</td>
-                        <td>{items[order.item_id]}</td>
+                        <td>#{items[order.item_id]}</td>
                         <td>{order.warehouse_id}</td>
                         <td>{order.amount}</td>
                         <td>{null==order?.expiration_date ||order?.expiration_date<1 ? "never" : order.expiration_date +" days"}</td>

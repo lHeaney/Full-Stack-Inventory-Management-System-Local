@@ -19,7 +19,15 @@ export default function WarehouseForm(){
         {
             total_capacity:formData.get("total_capacity"),
             geographic_department:formData.get("geographic_department"),
-            short_name:formData.get("short_name")
+            short_name:formData.get("short_name"),
+            longitude:formData.get("longitude"),
+            latitude:formData.get("latitude"),
+            cold_capacity:formData.get("cold_capacity"),
+            freezing_capacity:formData.get("freezing_capacity"),
+            room_temp_capacity:formData.get("room_temp_capacity"),
+            zip_code:formData.get("zip_code"),
+            state:formData.get("state"),
+            address:formData.get("address")
 
         }
         fetch(url, {
@@ -30,6 +38,9 @@ export default function WarehouseForm(){
         .then(data=>data.json())
         .then()
         .catch(error=>console.error(error))
+
+
+        
     }
 
     return( <>
@@ -40,19 +51,51 @@ export default function WarehouseForm(){
                     <label htmlFor="geographic_department">Geographic Department:</label>
                 </Grid>
                 <Grid size={8}>
-                    <TextField id="geographic_department" name="geographic_department" type="text" size="small"/>
+                    <TextField id="geographic_department" name="geographic_department" type="text" size="small" required={true}/>
                 </Grid>
                 <Grid size={4}>
                     <label htmlFor="total_capacity">total capacity</label>
                 </Grid>
                 <Grid size={8}>
-                    <TextField id="total_capacity" name="total_capacity" type="text" size="small"/>
+                    <TextField id="total_capacity" name="total_capacity" type="number" size="small" required={true}min="0" max="9999999999999999999" step="1"/>
                 </Grid>
                 <Grid size={4}>
                     <label htmlFor="short_name">name</label>
                 </Grid>
                 <Grid size={8}>
-                    <TextField id="short_name" name="short_name" type="text" size="small"/>
+                    <TextField id="short_name" name="short_name" type="text" size="small" required={true}/>
+                </Grid>
+                <Grid size={4}><label htmlFor="cold_capacity">Cold Capacity</label>
+                </Grid>
+                <Grid size={8}><TextField id="cold_capacity" name="cold_capacity" type="number" size="small"/>
+                </Grid>
+                <Grid size={4}><label htmlFor="freezing_capacity">Freezing Capacity</label>
+                </Grid>
+                <Grid size={8}><TextField id="freezing_capacity" name="freezing_capacity" type="number" size="small"/>
+                </Grid>
+                <Grid size={4}><label htmlFor="room_temp_capacity">Room Temperature Capacity</label>
+                </Grid>
+                <Grid size={8}><TextField id="room_temp_capacity" name="room_temp_capacity" type="number" size="small"/>
+                </Grid>
+                <Grid size={4}><label htmlFor="longitude">Longitude</label>
+                </Grid>
+                <Grid size={8}><TextField id="longitude" name="longitude" type="number" size="small"/>
+                </Grid>
+                <Grid size={4}><label htmlFor="latitude">Latitude</label>
+                </Grid>
+                <Grid size={8}><TextField id="latitude" name="latitude" type="number" size="small"/>
+                </Grid>
+                <Grid size={4}><label htmlFor="address">Address</label>
+                </Grid>
+                <Grid size={8}><TextField id="address" name="address" type="text" size="small"/>
+                </Grid>
+                <Grid size={4}><label htmlFor="state">State</label>
+                </Grid>
+                <Grid size={8}><TextField id="state" name="state" type="text" size="small"/>
+                </Grid>
+                <Grid size={4}><label htmlFor="zip_code">Zip Code</label>
+                </Grid>
+                <Grid size={8}><TextField id="zip_code" name="zip_code" type="number" size="small" min="0" max="99999" step="1"/>
                 </Grid>
             </Grid>
             

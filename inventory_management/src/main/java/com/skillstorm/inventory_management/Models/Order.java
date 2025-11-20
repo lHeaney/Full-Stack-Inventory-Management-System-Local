@@ -33,14 +33,14 @@ public class Order {
     @Column
     int amount;
     @Column
-    int warehouse_id;
+    int warehouseid;
     @Column
     Date expirationDate;
 
-    public Order(int amount, int item_id, int warehouse_id) {
+    public Order(int amount, int item_id, int warehouseid) {
         this.amount = amount;
         this.item_id = item_id;
-        this.warehouse_id = warehouse_id;
+        this.warehouseid = warehouseid;
         expirationDate = new Date(16513518);
 
     }
@@ -48,15 +48,15 @@ public class Order {
     {
         this.amount = 0;
         this.item_id = 0;
-        this.warehouse_id = 0;
+        this.warehouseid = 0;
         expirationDate = new Date(16513518);
     }
 
-    public Order(int amount, Date expirationDate, int item_id, int warehouse_id) {
+    public Order(int amount, Date expirationDate, int item_id, int warehouseid) {
         this.amount = amount;
         this.expirationDate = expirationDate;
         this.item_id = item_id;
-        this.warehouse_id = warehouse_id;
+        this.warehouseid = warehouseid;
     }
 
     public int getOrder_number() {
@@ -83,12 +83,12 @@ public class Order {
         this.amount = amount;
     }
 
-    public int getWarehouse_id() {
-        return warehouse_id;
+    public int getWarehouseid() {
+        return warehouseid;
     }
 
-    public void setWarehouse_id(int warehouse_id) {
-        this.warehouse_id = warehouse_id;
+    public void setWarehouseid(int warehouse_id) {
+        this.warehouseid = warehouse_id;
     }
 
     public Date getExpirationDate() {
@@ -105,7 +105,7 @@ public class Order {
         hash = 29 * hash + this.order_number;
         hash = 29 * hash + this.item_id;
         hash = 29 * hash + this.amount;
-        hash = 29 * hash + this.warehouse_id;
+        hash = 29 * hash + this.warehouseid;
         hash = 29 * hash + Objects.hashCode(this.expirationDate);
         return hash;
     }
@@ -131,7 +131,7 @@ public class Order {
         if (this.amount != other.amount) {
             return false;
         }
-        if (this.warehouse_id != other.warehouse_id) {
+        if (this.warehouseid != other.warehouseid) {
             return false;
         }
         return Objects.equals(this.expirationDate, other.expirationDate);
@@ -144,7 +144,7 @@ public class Order {
         sb.append("order_number=").append(order_number);
         sb.append(", item_id=").append(item_id);
         sb.append(", amount=").append(amount);
-        sb.append(", warehouse_id=").append(warehouse_id);
+        sb.append(", warehouse_id=").append(warehouseid);
         sb.append(", expirationDate=").append(expirationDate);
         sb.append('}');
         return sb.toString();

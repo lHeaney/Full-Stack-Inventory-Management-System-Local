@@ -4,10 +4,13 @@
  */
 
 package com.skillstorm.inventory_management.Repositories;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.skillstorm.inventory_management.Models.Order;
+
 
 
 /**
@@ -18,6 +21,6 @@ import com.skillstorm.inventory_management.Models.Order;
 public interface InventoryRepository  extends JpaRepository<Order, Integer>
 {
 
-
+    public List<Order> findByWarehouseid(int warehouse_id);
 
 }

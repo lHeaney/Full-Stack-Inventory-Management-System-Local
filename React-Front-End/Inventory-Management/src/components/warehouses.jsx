@@ -8,6 +8,8 @@ import Tab from "@mui/material/Tab"
 import * as React from "react";
 import Box from "@mui/material/Box"
 import WarehouseForm from "./warehouse_form"
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
 
 
 function CustomTabPanel(props){
@@ -29,6 +31,37 @@ function tabProps(index)
 }
 const url = "http://localhost:8080/warehouses"
 export default function Warehouses(){
+    function handleDelete(event)
+    {
+
+        event.preventDefault();
+        const formData = new FormData(event.target)
+
+        console.log(formData)
+        const params = {id:formData.get("warehouse_delete")}
+        if(isNaN(params.id) || params.id=="")
+            return
+        console.log(params);
+        fetch(url+"/warehouse"+ "?id="+params.id, {
+            method:"Delete",
+            headers:{"Content-Type":"application/json"},
+        })
+        .then(data=>data.json())
+        .then()
+        .catch(error=>{
+            console.error(error)
+            
+            }
+        )
+
+        fetch(url)
+        .then(data=> data.json())
+        .then(jsonData=>{
+            setWareHouses(jsonData)
+            console.log(jsonData)
+        })
+        .catch(error=>console.error(error))
+    }
 
     const [value, setValue]=React.useState(0)
     const changetab=(Event, newValue)=>{
@@ -65,9 +98,16 @@ export default function Warehouses(){
 
     </CustomTabPanel>
     <CustomTabPanel value={value} index = {1}>
-        <Container>
-            <h1>This is a table of warehouse data</h1>
-        </Container>
+            <form onSubmit={handleDelete}>
+                <Grid container spacing={2}>
+                    <Grid size={4}>
+                        <TextField id="warehouse_delete" name="warehouse_delete" type="number"/>
+                    </Grid>
+                    <Grid size={8}>
+                        <button type="submit">Delete Warehouse</button>
+                    </Grid>
+                </Grid>
+            </form>
         <Container>
             <WarehouseTable warehouseData={warehouses}/>
         </Container>

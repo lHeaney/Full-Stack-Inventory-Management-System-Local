@@ -5,7 +5,10 @@ package com.skillstorm.inventory_management.Controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -55,26 +58,32 @@ public class InventoryController {
         
     }
     @PostMapping("order")
-    public boolean addOrderToDatabase(@RequestBody Order order) {
+    public ResponseEntity<Object> addOrderToDatabase(@RequestBody Order order) {
 
         try {
             
             System.out.println(order.toString());
             inventoryService.createOrder(order);
             System.out.println(order.toString());
-            return true;
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage() ,HttpStatus.CONFLICT);
         }
-        return false;
     }
     
 
-    @GetMapping("/testing")
-    public String getMethodName() {
-        return "Test Successfull";
+    @DeleteMapping("/order")
+    public ResponseEntity<Object> deleteOrder(@RequestParam Integer id)
+    {
+        System.out.println("Deleting Order "+id+".....");
+        try {
+             inventoryService.deleteOrder(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
-    
     
 
 }

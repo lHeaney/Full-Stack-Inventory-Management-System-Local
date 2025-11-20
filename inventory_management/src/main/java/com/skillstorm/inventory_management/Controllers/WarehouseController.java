@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -76,7 +77,17 @@ public class WarehouseController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    
+    @DeleteMapping("/warehouse")
+    public ResponseEntity<Object> deleteWarehouse(@RequestParam Integer id)
+    {
+        System.out.println("Deleting warehouse "+id+".....");
+        try {
+             warehouseService.deleteWarehouseById(id);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
     
     
 

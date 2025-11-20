@@ -9,6 +9,8 @@ import * as React from "react";
 import Box from "@mui/material/Box"
 import OrderTable from "./orders_table";
 import OrderForm from "./orders_form";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
 
 
 function CustomTabPanel(props){
@@ -31,6 +33,38 @@ function tabProps(index)
 const url = "http://localhost:8080/inventory"
 
 export default function Orders(){
+
+    function handleDelete(event)
+    {
+
+        event.preventDefault();
+        const formData = new FormData(event.target)
+
+        console.log(formData)
+        const params = {id:formData.get("order_delete")}
+        if(isNaN(params.id) || params.id=="")
+            return
+        console.log(params);
+        fetch(url+"/order"+ "?id="+params.id, {
+            method:"Delete",
+            headers:{"Content-Type":"application/json"},
+        })
+        .then(data=>data.json())
+        .then()
+        .catch(error=>{
+            console.error(error)
+            
+            }
+        )
+
+        fetch(url)
+        .then(data=> data.json())
+        .then(jsonData=>{
+            setOrders(jsonData)
+            console.log(jsonData)
+        })
+        .catch(error=>console.error(error))
+    }
 
     const [value, setValue]=React.useState(0)
     const changetab=(Event, newValue)=>{
@@ -64,6 +98,16 @@ export default function Orders(){
         </Tabs>
     </Box>
     <CustomTabPanel value={value} index = {0}>
+    <form onSubmit={handleDelete}>
+                <Grid container spacing={2}>
+                    <Grid size={4}>
+                        <TextField id="order_delete" name="order_delete" type="number"/>
+                    </Grid>
+                    <Grid size={8}>
+                        <button type="submit">Delete Order</button>
+                    </Grid>
+                </Grid>
+            </form>
         <OrderTable orderData={orders}/>
     </CustomTabPanel>
     <CustomTabPanel value={value} index = {1}>

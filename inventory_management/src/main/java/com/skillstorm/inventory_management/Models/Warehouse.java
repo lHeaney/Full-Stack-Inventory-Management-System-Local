@@ -25,7 +25,7 @@ public class Warehouse {
     @Id
     @Column
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    int warehouse_id;
+    int warehouseid;
     @Column
     int total_capacity;
     @Column
@@ -80,12 +80,12 @@ public class Warehouse {
     }
     
 
-    public int getWarehouse_id() {
-        return warehouse_id;
+    public int getWarehouseid() {
+        return warehouseid;
     }
 
-    public void setWarehouse_id(int warehouse_id) {
-        this.warehouse_id = warehouse_id;
+    public void setWarehouseid(int warehouseid) {
+        this.warehouseid = warehouseid;
     }
 
     public int getTotal_capacity() {
@@ -235,7 +235,7 @@ public class Warehouse {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 17 * hash + this.warehouse_id;
+        hash = 17 * hash + this.warehouseid;
         hash = 17 * hash + this.total_capacity;
         hash = 17 * hash + this.used_total_capacity;
         hash = 17 * hash + this.cold_capacity;
@@ -269,7 +269,7 @@ public class Warehouse {
             return false;
         }
         final Warehouse other = (Warehouse) obj;
-        if (this.warehouse_id != other.warehouse_id) {
+        if (this.warehouseid != other.warehouseid) {
             return false;
         }
         if (this.total_capacity != other.total_capacity) {
@@ -330,7 +330,7 @@ public class Warehouse {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Warehouse{");
-        sb.append("warehouse_id=").append(warehouse_id);
+        sb.append("warehouseid=").append(warehouseid);
         sb.append(", total_capacity=").append(total_capacity);
         sb.append(", used_total_capacity=").append(used_total_capacity);
         sb.append(", cold_capacity=").append(cold_capacity);

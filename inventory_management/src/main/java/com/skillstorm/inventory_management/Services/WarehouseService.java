@@ -54,7 +54,7 @@ public class WarehouseService {
     {
         if(warehouseRepo.existsById(id))
         {
-            warehouse.setWarehouse_id(id);
+            warehouse.setWarehouseid(id);
             warehouseRepo.save(warehouse);
         }
         else
