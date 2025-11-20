@@ -3,11 +3,13 @@ import WarehouseTable from "./warehouse_table";
 import { Grid, padding, width } from "@mui/system";
 import TextField from "@mui/material/TextField"
 import React from "react";
+import { useRef } from "react";
 
 
 const url = "http://localhost:8080/warehouses"
 
 export default function WarehouseForm(){
+    const formRef = useRef(null)
 
     function handleSubmit(event)
     {
@@ -39,13 +41,13 @@ export default function WarehouseForm(){
         .then()
         .catch(error=>console.error(error))
 
-
+        formRef.current.reset();
         
     }
 
     return( <>
     
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} ref={formRef}>
             <Grid container spacing={2}>
                 <Grid size={4}>
                     <label htmlFor="geographic_department">Geographic Department:</label>

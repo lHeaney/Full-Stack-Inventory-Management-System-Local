@@ -63,10 +63,8 @@ public class InventoryService {
 
    public boolean createOrder(Order order)throws Exception
    {
-        System.out.println("Creating Order...");
+    
             Item i = itemDataService.getItemById(order.getItem_id());
-            System.out.println(order.toString());
-            System.out.println(warehouseService.getWarehouseByID(2).get().toString());
             Warehouse w =warehouseService.getWarehouseByID(order.getWarehouseid()).get(); 
             if(i.isRequires_cold()&& w.getCold_capacity()-w.getUsed_cold_capacity()<order.getAmount())
                 throw new IllegalStateException("Error. Please contact an Administrator. Attempting to add Cold");
@@ -80,7 +78,6 @@ public class InventoryService {
                 throw new IllegalStateException("Error. Please contact an Administrator. Attempting to add Room Temperature");
             else
                 w.setUsed_room_temp_capacity(w.getUsed_room_temp_capacity()+order.getAmount());
-            System.out.println(w.toString());
             if(w.getTotal_capacity()-w.getUsed_total_capacity()<order.getAmount())
                 throw new IllegalStateException("Error. Please contact an administrator. Attempting to add beyond capacity");
             else

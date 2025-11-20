@@ -60,11 +60,10 @@ public class InventoryController {
     @PostMapping("order")
     public ResponseEntity<Object> addOrderToDatabase(@RequestBody Order order) {
 
+        System.out.println(order.toString());
         try {
             
-            System.out.println(order.toString());
             inventoryService.createOrder(order);
-            System.out.println(order.toString());
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage() ,HttpStatus.CONFLICT);

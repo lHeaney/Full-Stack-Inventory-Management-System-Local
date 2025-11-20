@@ -18,7 +18,7 @@ export default function OrderForm(){
         const newOrder=
         {
             item_id: formData.get("item_id"),
-            warehouse_id: formData.get("destination_warehouse"),
+            warehouseid: formData.get("destination_warehouse"),
             amount: formData.get("amount")
 
         }
@@ -37,10 +37,10 @@ export default function OrderForm(){
     
         <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
-                <Grid size={4}> <label htmlFor="origin_warehouse">Origin Warehouse</label>
+                {/* <Grid size={4}> <label htmlFor="origin_warehouse">Origin Warehouse</label>
                 </Grid>
                 <Grid size={8}><TextField id="origin_warehouse" name="origin_warehouse" type="text"/>
-                </Grid>
+                </Grid> */}
                 <Grid size={4}><label htmlFor="destination_warehouse">Destination Warehouse </label>
                 </Grid>
                 <Grid size={8}><TextField id="destination_warehouse" name="destination_warehouse" type="text"/>
