@@ -10,8 +10,12 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.skillstorm.inventory_management.Models.Order;
 import com.skillstorm.inventory_management.Models.Warehouse;
+import com.skillstorm.inventory_management.Repositories.InventoryRepository;
 import com.skillstorm.inventory_management.Repositories.WarehouseRepository;
+
+import jakarta.transaction.Transactional;
 
 /**
  *
@@ -21,9 +25,11 @@ import com.skillstorm.inventory_management.Repositories.WarehouseRepository;
 public class WarehouseService {
 
     private final WarehouseRepository warehouseRepo;
+    private final InventoryRepository inventoryRepo;
 
-    public WarehouseService(WarehouseRepository warehouseRepo) {
+    public WarehouseService(WarehouseRepository warehouseRepo, InventoryRepository inventoryRepo) {
         this.warehouseRepo = warehouseRepo;
+        this.inventoryRepo=inventoryRepo;
     }
     public List<Warehouse> getAllWarehouseList()
     {
@@ -45,8 +51,19 @@ public class WarehouseService {
         return false;
 
     }
+    @Transactional
     public void deleteWarehouseById(int id)
     {
+        for(Order x : inventoryRepo.findByWarehouseid(id))
+        {
+            try{
+               inventoryRepo.deleteById(x.getOrder_number());
+            }catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            
+        }
         warehouseRepo.deleteById(id);
     }
 

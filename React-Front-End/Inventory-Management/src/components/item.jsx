@@ -10,6 +10,9 @@ import Box from "@mui/material/Box"
 import WarehouseForm from "./warehouse_form"
 import ItemTable from "./item_table";
 import ItemForm from "./item_form";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import '../App.css/'
 
 
 function CustomTabPanel(props){
@@ -32,7 +35,41 @@ function tabProps(index)
 const url = "http://localhost:8080/items_data"
 
 export default function Item(){
+    function handleDelete(event)
+    {
 
+        event.preventDefault();
+        if(!window.confirm("Confirm Deletion?"))
+        {
+            return;
+        }
+        const formData = new FormData(event.target)
+
+        console.log(formData)
+        const params = {id:formData.get("item_delete")}
+        if(isNaN(params.id) || params.id=="")
+            return
+        console.log(params);
+        fetch(url+"/item"+ "?id="+params.id, {
+            method:"Delete",
+            headers:{"Content-Type":"application/json"},
+        })
+        .then(data=>data.json())
+        .then()
+        .catch(error=>{
+            console.error(error)
+            
+            }
+        )
+
+        fetch(url)
+        .then(data=> data.json())
+        .then(jsonData=>{
+            setItems(jsonData)
+            console.log(jsonData)
+        })
+        .catch(error=>console.error(error))
+    }
     const [value, setValue]=React.useState(0)
     const changetab=(Event, newValue)=>{
         setValue(newValue)
@@ -65,6 +102,16 @@ export default function Item(){
         </Tabs>
     </Box>
     <CustomTabPanel value={value} index = {0}>
+    <form onSubmit={handleDelete}>
+                <Grid container spacing={2}>
+                    <Grid size={4}>
+                        <TextField id="item_delete" name="item_delete" type="number"/>
+                    </Grid>
+                    <Grid size={8}>
+                        <button className="button" type="submit">Delete item</button>
+                    </Grid>
+                </Grid>
+            </form>
         <ItemTable itemData={items}/>
     </CustomTabPanel>
     <CustomTabPanel value={value} index = {1}>

@@ -4,6 +4,7 @@ import Table from "@mui/material/Table";
 import { useState } from "react";
 import { useEffect } from "react";
 import Grid from "@mui/material/Grid";
+import '../App.css/'
 
 
 const url = "http://localhost:8080/items_data"
@@ -18,7 +19,6 @@ export default function OrderTable({orderData}){
                 let mapEntries = jsonData.map(item=>{
                     return [item["item_id"], " | "+item["name"]]
                 })
-                console.log(mapEntries)
                 setItems( mapEntries);
                 
                 
@@ -28,12 +28,12 @@ export default function OrderTable({orderData}){
 
     return( <>
 
-    <Table>
+    <Table className="table">
         <thead>
             <tr>
                 <th>Order Number</th>
                 <th>Item ID Number and Name</th>
-                <th>Originating Warehouse</th>
+                <th>Warehouse</th>
                 <th>Amount</th>
                 <th>Expiration</th>
             </tr>
@@ -43,8 +43,8 @@ export default function OrderTable({orderData}){
                 return(<>
                     <tr key={order.order_number}>
                         <td>{order.order_number}</td>
-                        <td>#{items[order.item_id]}</td>
-                        <td>{order.warehouse_id}</td>
+                        <td>#{items[order.item_id-2]}</td>
+                        <td>#{order.warehouseid}</td>
                         <td>{order.amount}</td>
                         <td>{null==order?.expiration_date ||order?.expiration_date<1 ? "never" : order.expiration_date +" days"}</td>
                     </tr>    

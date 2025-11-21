@@ -4,9 +4,12 @@ import { Grid, padding, width } from "@mui/system";
 import TextField from "@mui/material/TextField"
 import React from "react";
 import { useRef } from "react";
+import Dialog from '@mui/material/Dialog'
+import DialogTitle from '@mui/material/DialogTitle'
 
 
 const url = "http://localhost:8080/warehouses"
+
 
 export default function WarehouseForm(){
     const formRef = useRef(null)
@@ -14,6 +17,10 @@ export default function WarehouseForm(){
     function handleSubmit(event)
     {
         event.preventDefault();
+        if(!window.confirm("Confirm creation of new Warehouse?"))
+        {
+            return;
+        }
         const formData = new FormData(event.target)
 
         console.log(formData.get("total_capacity"))
@@ -47,7 +54,7 @@ export default function WarehouseForm(){
 
     return( <>
     
-        <form onSubmit={handleSubmit} ref={formRef}>
+        <form onSubmit={handleSubmit} ref={formRef} className="form">
             <Grid container spacing={2}>
                 <Grid size={4}>
                     <label htmlFor="geographic_department">Geographic Department:</label>

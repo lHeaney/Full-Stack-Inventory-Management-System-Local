@@ -11,6 +11,7 @@ import OrderTable from "./orders_table";
 import OrderForm from "./orders_form";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
+import TransferOrderForm from "./transfer_order";
 
 
 function CustomTabPanel(props){
@@ -38,6 +39,10 @@ export default function Orders(){
     {
 
         event.preventDefault();
+        if(!window.confirm("Confirm Deletion?"))
+        {
+            return;
+        }
         const formData = new FormData(event.target)
 
         console.log(formData)
@@ -94,7 +99,7 @@ export default function Orders(){
         <Tabs value={value} onChange={changetab} aria-label="orders_tabs">
             <Tab label="All Orders" {...tabProps(0)}/>
             <Tab label="New Order" {...tabProps(1)}/>
-            {/* <Tab label="New Warehouse" {...tabProps(2)}/> */}
+            <Tab label="Transfer Inventory" {...tabProps(2)}/>
         </Tabs>
     </Box>
     <CustomTabPanel value={value} index = {0}>
@@ -113,6 +118,11 @@ export default function Orders(){
     <CustomTabPanel value={value} index = {1}>
         <Container>
             <OrderForm />
+        </Container>
+    </CustomTabPanel>
+    <CustomTabPanel value={value} index = {2}>
+        <Container>
+            <TransferOrderForm />
         </Container>
     </CustomTabPanel>
        

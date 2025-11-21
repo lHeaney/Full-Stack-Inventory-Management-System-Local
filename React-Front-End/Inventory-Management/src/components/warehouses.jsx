@@ -10,6 +10,8 @@ import Box from "@mui/material/Box"
 import WarehouseForm from "./warehouse_form"
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
+import WarehouseOverview from "./warehouse_overview";
+import '../App.css/'
 
 
 function CustomTabPanel(props){
@@ -35,9 +37,15 @@ export default function Warehouses(){
     {
 
         event.preventDefault();
+        if(!window.confirm("Confirm deletion?"))
+        {
+            return;
+        }
+        if(!window.confirm("Confirm Deletion of the Warehouse?"))
+        {
+            return;
+        }
         const formData = new FormData(event.target)
-
-        console.log(formData)
         const params = {id:formData.get("warehouse_delete")}
         if(isNaN(params.id) || params.id=="")
             return
@@ -61,6 +69,7 @@ export default function Warehouses(){
             console.log(jsonData)
         })
         .catch(error=>console.error(error))
+        changetab("", 1);
     }
 
     const [value, setValue]=React.useState(0)
@@ -89,13 +98,13 @@ export default function Warehouses(){
     <>
     <Box sx = {{borderBottom:1, borderColor:'divider'}}>
         <Tabs value={value} onChange={changetab} aria-label="warehouse_tabs">
-            <Tab label="Overview" {...tabProps(0)}/>
-            <Tab label="All Warehouses" {...tabProps(1)}/>
-            <Tab label="New Warehouse" {...tabProps(2)}/>
+            <Tab className="underTab" label="Overview" {...tabProps(0)}/>
+            <Tab className="underTab" label="All Warehouses" {...tabProps(1)}/>
+            <Tab className="underTab" label="New Warehouse" {...tabProps(2)}/>
         </Tabs>
     </Box>
     <CustomTabPanel value={value} index = {0}>
-
+        <WarehouseOverview />
     </CustomTabPanel>
     <CustomTabPanel value={value} index = {1}>
             <form onSubmit={handleDelete}>

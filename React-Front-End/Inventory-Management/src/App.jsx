@@ -1,5 +1,5 @@
 // import { useState } from 'react'
-// import './App.css'
+import './App.css'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import FormHelperText from '@mui/material/FormHelperText'
@@ -18,7 +18,7 @@ function App() {
     <>
       <Container maxWidth="500">
         <Typography variant='h2'>
-          MUI example yea?
+          Inventory Order Shipping v0.12345
         </Typography>
         <TopBar />
       </Container>

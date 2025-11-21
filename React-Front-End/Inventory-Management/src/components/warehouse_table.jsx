@@ -4,6 +4,7 @@ import Table from "@mui/material/Table";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
+import '../App.css/'
 
 export default function WarehouseTable({warehouseData}){
 
@@ -11,7 +12,7 @@ export default function WarehouseTable({warehouseData}){
     return( <>
 
    
-    <Table >
+    <Table className="table" >
         <thead>
             <tr>
                 <th>Warehouse ID#</th>
@@ -43,7 +44,7 @@ export default function WarehouseTable({warehouseData}){
                         <td>{warehouse.cold_capacity}</td>
                         <td>{warehouse.used_cold_capacity}</td>
                         <td>{warehouse.room_temp_capacity}</td>
-                        <td>{warehouse.used_toom_temp_capacity}</td>
+                        <td>{warehouse.used_room_temp_capacity}</td>
                     </tr>    
                 </>)
                 })

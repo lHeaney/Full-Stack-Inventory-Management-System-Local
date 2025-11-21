@@ -7,7 +7,10 @@ package com.skillstorm.inventory_management.Controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -70,9 +73,22 @@ public class ItemController {
                 item.isRequires_cold(),
                 item.isRequires_freezing(),
                 item.isRequires_room_temp(),
-                item.getSku())
+                item.getSku(),
+                item.getSize())
                 );
 
+    }
+    @DeleteMapping("/item")
+    public ResponseEntity<Object> deleteItem(@RequestParam int id)
+    {
+        try {
+            itemDataService.deleteItem(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) { 
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+       
     }
     
 

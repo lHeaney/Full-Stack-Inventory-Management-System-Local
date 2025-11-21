@@ -5,8 +5,6 @@
 
 package com.skillstorm.inventory_management.Models;
 
-import java.util.Objects;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,8 +40,10 @@ public class Item {
     String sku;
     @Column
     String description;
+    @Column
+    double size;
 
-    public Item(String description, int expire_days, String name, boolean requires_cold, boolean requires_freezing, boolean requires_room_temp, String sku) {
+    public Item(String description, int expire_days, String name, boolean requires_cold, boolean requires_freezing, boolean requires_room_temp, String sku, double size) {
         this.description = description;
         this.expire_days = expire_days;
         this.name = name;
@@ -51,6 +51,7 @@ public class Item {
         this.requires_freezing = requires_freezing;
         this.requires_room_temp = requires_room_temp;
         this.sku = sku;
+        this.size=size;
     }
 
     public Item(String name, String sku) {
@@ -62,6 +63,7 @@ public class Item {
         this.requires_freezing = false;
         this.requires_room_temp = false;
         this.expire_days = -1;
+        this.size=1;
     }
 
     public Item()
@@ -74,6 +76,7 @@ public class Item {
         this.requires_freezing = false;
         this.requires_room_temp = false;
         this.expire_days = -1;
+        this.size=1;
     }
     public int getItem_id() {
         return item_id;
@@ -141,59 +144,75 @@ public class Item {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + this.item_id;
-        hash = 67 * hash + Objects.hashCode(this.name);
-        hash = 67 * hash + (this.requires_cold ? 1 : 0);
-        hash = 67 * hash + (this.requires_freezing ? 1 : 0);
-        hash = 67 * hash + (this.requires_room_temp ? 1 : 0);
-        hash = 67 * hash + this.expire_days;
-        hash = 67 * hash + Objects.hashCode(this.sku);
-        hash = 67 * hash + Objects.hashCode(this.description);
-        return hash;
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + item_id;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + (requires_cold ? 1231 : 1237);
+        result = prime * result + (requires_freezing ? 1231 : 1237);
+        result = prime * result + (requires_room_temp ? 1231 : 1237);
+        result = prime * result + expire_days;
+        result = prime * result + ((sku == null) ? 0 : sku.hashCode());
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
+        long temp;
+        temp = Double.doubleToLongBits(size);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if (this == obj)
             return true;
-        }
-        if (obj == null) {
+        if (obj == null)
             return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
             return false;
-        }
-        final Item other = (Item) obj;
-        if (this.item_id != other.item_id) {
+        Item other = (Item) obj;
+        if (item_id != other.item_id)
             return false;
-        }
-        if (this.requires_cold != other.requires_cold) {
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
             return false;
-        }
-        if (this.requires_freezing != other.requires_freezing) {
+        if (requires_cold != other.requires_cold)
             return false;
-        }
-        if (this.requires_room_temp != other.requires_room_temp) {
+        if (requires_freezing != other.requires_freezing)
             return false;
-        }
-        if (this.expire_days != other.expire_days) {
+        if (requires_room_temp != other.requires_room_temp)
             return false;
-        }
-        if (!Objects.equals(this.name, other.name)) {
+        if (expire_days != other.expire_days)
             return false;
-        }
-        if (!Objects.equals(this.sku, other.sku)) {
+        if (sku == null) {
+            if (other.sku != null)
+                return false;
+        } else if (!sku.equals(other.sku))
             return false;
-        }
-        return Objects.equals(this.description, other.description);
+        if (description == null) {
+            if (other.description != null)
+                return false;
+        } else if (!description.equals(other.description))
+            return false;
+        if (Double.doubleToLongBits(size) != Double.doubleToLongBits(other.size))
+            return false;
+        return true;
     }
 
     @Override
     public String toString() {
         return "Item [item_id=" + item_id + ", name=" + name + ", requires_cold=" + requires_cold
                 + ", requires_freezing=" + requires_freezing + ", requires_room_temp=" + requires_room_temp
-                + ", expire_days=" + expire_days + ", sku=" + sku + ", description=" + description + "]";
+                + ", expire_days=" + expire_days + ", sku=" + sku + ", description=" + description + ", size=" + size
+                + "]";
+    }
+
+    public double getSize() {
+        return size;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
     }
 
 

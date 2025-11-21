@@ -46,21 +46,32 @@ public class InventoryController {
        return  inventoryService.findAllOrders();
     }
     @GetMapping("order")
-    public Optional<Order> getMethodName(@RequestParam int id) {
+    public Optional<Order> getOrderById(@RequestParam int id) {
         return inventoryService.findOrderById(id);
+    }
+    @PostMapping("/transfer")
+    public ResponseEntity<Object> postTranferOrder(@RequestParam int warehouseOrigin,
+                                                    @RequestParam int warehouseDestination,
+                                                    @RequestParam int item_id,
+                                                    @RequestParam int amount
+     ) {
+
+        System.out.println(""+warehouseDestination+" "+warehouseOrigin+" "+item_id+" "+amount);
+        inventoryService.tranferGoods( warehouseOrigin, warehouseDestination, item_id,amount);
+        
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     
     @PutMapping("order")
-    public boolean putMethodName(@RequestParam int id, @RequestBody Order order) {
+    public boolean updateOrder(@RequestParam int id, @RequestBody Order order) {
         
-        System.out.println(order.toString());
         return inventoryService.updateOrder(id, order);
         
     }
     @PostMapping("order")
     public ResponseEntity<Object> addOrderToDatabase(@RequestBody Order order) {
 
-        System.out.println(order.toString());
+        System.out.println("incoming Order "+order.toString());
         try {
             
             inventoryService.createOrder(order);

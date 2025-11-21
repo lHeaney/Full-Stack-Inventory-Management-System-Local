@@ -1,0 +1,92 @@
+:root{
+    --color-primary: #f7f9fc
+    --color-secondary: #f7f9fc
+    --color-background-light: #e8ecf4;
+    --color-background-dark: #f7f9fc;
+    --color-text-dark: #2c3e50;
+    --color-text-light: #ffffff;
+    --color-accent-tab: #ffd1a4;
+    --color-border-light: #dbe4f0;
+    --bg-start-color:#f0f4f8;
+    --bg-end-color:#e6eef5;
+}
+
+body{
+    font-family: fantasy;
+    background-color: var(--color-background-light);
+    color:var(--color-text-dark);
+    margin: 2;
+    padding: 2;
+    line-height: 1.6;
+}
+#root{
+    min-height: 100vh;
+    background:linear-gradient(
+        to bottom right,
+        var(--bg-start-color),
+        var(--bg-end-color)
+    )
+    /* background-color: #e8ec4e; */
+}
+
+h1, h2, h3{
+    color:var(--color-primary);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.table{
+    width:200%;
+    margin-top: 10;
+    margin-right: 5%;
+    box-shadow: 0, 4px, 6px, rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: scroll;
+    border: 2px solid black;
+}
+.table th{
+    background-color: var(--color-accent-tab);
+    /* color:var(--color-text-light); */
+    padding: 10px, 12px;
+    text-align: center;
+}
+.table td{
+    padding: 10, 12;
+    border-bottom: 1px solid var(--color-border-light);
+    border: 2px solid #020e1a;
+}
+.table tbody tr:nth-child(even){
+    background-color: var(--color-background-dark);
+}
+.table tbody tr:nth-child(odd){
+    background-color: var(--color-background-light);
+}
+.table tbody tr:hover{
+    background-color: #c3d9f7;
+}
+.topTab{
+    background-color: var(--color-background-dark);
+    color: var(--color-accent-tab);
+}
+.underTab{
+    background-color: var(--color-background-dark);
+    color: var(--color-accent-tab);
+}
+.button{
+    background-color: rgb(73, 42, 2);
+    color: lightcyan;
+    align-self: self-end;
+    font-size: medium;
+    border-style: dashed;
+    padding: 10px, 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+}
+.button:hover{
+    background-color: blue;
+}
+.form{
+    border: 2px solid black;
+    padding: 3px;
+
+}

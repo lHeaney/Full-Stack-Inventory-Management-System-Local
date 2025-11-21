@@ -3,44 +3,51 @@ import WarehouseTable from "./warehouse_table";
 import { Grid, padding, width } from "@mui/system";
 import TextField from "@mui/material/TextField"
 import React from "react";
-
+import { useRef } from "react";
 
 const url = "http://localhost:8080/inventory"
 
-export default function OrderForm(){
+export default function TransferOrderForm(){
+    const formRef = useRef(null)
 
     function handleSubmit(event)
     {
         event.preventDefault();
-        if(!window.confirm("Confirm Order?"))
-        {
-            return;
-        }
+        if(!window.confirm("Confirm Transfer of Materials?"))
+            {
+                return;
+            }
         const formData = new FormData(event.target)
 
-        console.log(formData)
-        const newOrder=
+        const transferOrder=
         {
             item_id: formData.get("item_id"),
-            warehouseid: formData.get("destination_warehouse"),
+            warehouseDestination: formData.get("destination_warehouse"),
+            warehouseOrigin:formData.get("origin_warehouse"),
             amount: formData.get("amount")
 
         }
-        console.log(newOrder)
-        fetch(url+"/order", {
+        const params=new URLSearchParams(transferOrder).toString();
+        console.log(url+"/tranfer?"+params)
+        fetch(url+"/transfer?"+params, {
             method:"Post",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(newOrder)
         })
         .then(data=>data.json())
         .then()
         .catch(error=>console.error(error))
+
+        formRef.current.reset();
     }
 
     return( <>
     
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} ref={formRef}>
         <Grid container spacing={2}>
+                <Grid size={4}><label htmlFor="origin_warehouse">Origin Warehouse </label>
+                </Grid>
+                <Grid size={8}><TextField id="origin_warehouse" name="origin_warehouse" type="text"/>
+                </Grid>
                 <Grid size={4}><label htmlFor="destination_warehouse">Destination Warehouse </label>
                 </Grid>
                 <Grid size={8}><TextField id="destination_warehouse" name="destination_warehouse" type="text"/>

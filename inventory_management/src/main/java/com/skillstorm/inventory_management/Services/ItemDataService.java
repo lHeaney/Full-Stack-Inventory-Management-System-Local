@@ -10,6 +10,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.skillstorm.inventory_management.Models.Item;
+import com.skillstorm.inventory_management.Models.Order;
+import com.skillstorm.inventory_management.Repositories.InventoryRepository;
 import com.skillstorm.inventory_management.Repositories.ItemDataRepository;
 
 /**
@@ -20,9 +22,11 @@ import com.skillstorm.inventory_management.Repositories.ItemDataRepository;
 public class ItemDataService {
 
     private final ItemDataRepository itemDataRepo;
+    public final InventoryRepository inventoryRepo;
 
-    public ItemDataService(ItemDataRepository itemDataRepo) {
+    public ItemDataService(ItemDataRepository itemDataRepo, InventoryRepository inventoryRepo) {
         this.itemDataRepo = itemDataRepo;
+        this.inventoryRepo = inventoryRepo;
     }
     
 
@@ -35,7 +39,14 @@ public class ItemDataService {
         itemDataRepo.save(item);
         return true;
     }
-    public void deleteItem(int id){
+    public void deleteItem(int id)throws Exception{
+        for(Order x : inventoryRepo.findAll())
+        {
+            if(x.getItem_id()==id){
+                throw new Exception("Delete Failed, Orders still exist with Item");
+            }
+        }
+        
         itemDataRepo.deleteById(id);
     }
 

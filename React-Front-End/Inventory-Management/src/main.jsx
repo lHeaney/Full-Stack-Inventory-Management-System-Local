@@ -4,6 +4,7 @@ import App from './App.jsx'
 import Warehouse from './components/warehouses.jsx'
 import WarehouseForm from './components/warehouse_form.jsx'
 import WarehouseTable from './components/warehouse_table.jsx'
+import './App.css'
 
 
 
