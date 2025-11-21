@@ -48,7 +48,7 @@ export default function OrderForm(){
 
     return( <>
     
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form">
         <Grid container spacing={2}>
                 <Grid size={4}><label htmlFor="destination_warehouse">Destination Warehouse </label>
                 </Grid>
@@ -62,13 +62,13 @@ export default function OrderForm(){
                 </Grid>
                 <Grid size={8}><TextField id="amount" name="amount" type="text"/>
                 </Grid>
-                <Grid size={4}>
+                <Grid size={2}>
                 </Grid>
-                <Grid size={8}>
+                <Grid size={10}><button className="button" type="submit">Submit</button>
                 </Grid>
                 
         </Grid>
-            <button type="submit">Submit</button>
+            
         </form>
 
     </>

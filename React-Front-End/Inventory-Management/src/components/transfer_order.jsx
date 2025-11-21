@@ -46,7 +46,7 @@ export default function TransferOrderForm(){
 
     return( <>
     
-        <form onSubmit={handleSubmit} ref={formRef}>
+        <form onSubmit={handleSubmit} ref={formRef} className="form">
         <Grid container spacing={2}>
                 <Grid size={4}><label htmlFor="origin_warehouse">Origin Warehouse </label>
                 </Grid>
@@ -64,13 +64,13 @@ export default function TransferOrderForm(){
                 </Grid>
                 <Grid size={8}><TextField id="amount" name="amount" type="text"/>
                 </Grid>
-                <Grid size={4}>
+                <Grid size={2}>
                 </Grid>
-                <Grid size={8}>
+                <Grid size={10}><button className="button" type="submit">Submit</button>
                 </Grid>
                 
         </Grid>
-            <button type="submit">Submit</button>
+            
         </form>
 
     </>

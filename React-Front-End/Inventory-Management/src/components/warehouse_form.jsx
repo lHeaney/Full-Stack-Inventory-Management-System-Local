@@ -59,7 +59,7 @@ export default function WarehouseForm(){
     return( <>
     
         <form onSubmit={handleSubmit} ref={formRef} className="form">
-            <Grid container spacing={2}>
+            <Grid container spacing={4}>
                 <Grid size={4}>
                     <label htmlFor="geographic_department">Geographic Department:</label>
                 </Grid>
@@ -110,9 +110,11 @@ export default function WarehouseForm(){
                 </Grid>
                 <Grid size={8}><TextField id="zip_code" name="zip_code" type="number" size="small" min="0" max="99999" step="1"/>
                 </Grid>
+                <Grid size={2}></Grid>
+                <Grid size={10}><button className="button" type="submit">Submit</button></Grid>
             </Grid>
             
-            <button type="submit">Submit</button>
+            
         </form>
 
     </>

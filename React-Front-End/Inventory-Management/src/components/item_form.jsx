@@ -68,8 +68,8 @@ export default function ItemForm(){
     }
 
     return( 
-        <form method = "Post" onSubmit={handleSubmit} ref={formRef}>
-            <Grid container spacing={2}>
+        <form method = "Post" onSubmit={handleSubmit} ref={formRef} className="form">
+            <Grid container spacing={4}>
                 <Grid size={4}>
                     <label htmlFor="name">Name</label>
                 </Grid>
@@ -116,8 +116,12 @@ export default function ItemForm(){
                 </Grid>
                 <Grid size={8}><TextField id="size" name="size" type="number" defaultValue={1}/>
                 </Grid>
+                <Grid size={2}> 
+                </Grid>
+                <Grid size={10}><button className="button" type="submit">Submit</button>
+                </Grid>
             </Grid>
-            <button type="submit">Submit</button>
+            
         </form>
 );
 }
