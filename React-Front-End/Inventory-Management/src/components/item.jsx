@@ -124,7 +124,7 @@ export default function Item(){
                 <Grid container spacing={2} margin={3}>
                 <Grid size={3}></Grid>
                 <Grid size={3}>
-                        <TextField id="item_delete" name="item_delete" type="number" size="small"/>
+                        <TextField  className="inputBox" id="item_delete" name="item_delete" type="number" size="small"/>
                     </Grid>
                     <Grid size={6}>
                         <button className="button" type="submit" size="bigger" >Delete item</button>

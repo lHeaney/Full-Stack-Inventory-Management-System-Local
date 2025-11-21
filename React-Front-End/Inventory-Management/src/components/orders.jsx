@@ -121,7 +121,7 @@ export default function Orders(){
                 <Grid container spacing={2} margin={3}>
                 <Grid size={3}></Grid>
                 <Grid size={3}>
-                        <TextField id="order_delete" name="order_delete" type="number" size="small"/>
+                        <TextField  className="inputBox" id="order_delete" name="order_delete" type="number" size="small"/>
                     </Grid>
                     <Grid size={6}>
                         <button className="button" type="submit">Delete Order</button>

@@ -111,7 +111,7 @@ export default function Warehouses(){
                 <Grid container spacing={0} margin={3}>
                     <Grid size={3}></Grid>
                     <Grid size={3}>
-                        <TextField id="warehouse_delete" name="warehouse_delete" type="number" size="small" margin="200"/>
+                        <TextField className="inputBox" id="warehouse_delete" name="warehouse_delete" type="number" size="small" margin="200"/>
                     </Grid>
                     <Grid size={6}>
                         <button className="button" type="submit" >Delete Warehouse</button>
