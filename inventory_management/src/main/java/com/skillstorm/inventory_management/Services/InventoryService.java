@@ -19,7 +19,7 @@ import com.skillstorm.inventory_management.Repositories.InventoryRepository;
 import jakarta.transaction.Transactional;
 
 /**
- *
+ * 
  * @author firef
  */
 @Service

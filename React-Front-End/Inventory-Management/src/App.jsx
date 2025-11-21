@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <Container maxWidth="500">
-        <Typography variant='h2'>
+        <Typography variant='h2' fontStyle={'italic'} className='outlineText'>
           Inventory Order Shipping v0.12345
         </Typography>
         <TopBar />

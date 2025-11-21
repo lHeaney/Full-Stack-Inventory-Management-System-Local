@@ -27,6 +27,8 @@ import com.skillstorm.inventory_management.Services.WarehouseService;
 
 /**
  * handles the /warehouses endpoints
+ * /warehouses for access to all warehouses list
+ * /warehouses/warehouse for individual warehouse operations
  * @author firef
  */
 @RestController
@@ -41,7 +43,8 @@ public class WarehouseController {
 
     /**
      * gets a list of all warehouses
-     * @return
+     * Always succeeds, but does not always return data
+     * @return returns a responseEntity with a list of all warehouses
      */
     @GetMapping()
     public ResponseEntity<List<Warehouse>> getWarehouses() {
@@ -51,8 +54,8 @@ public class WarehouseController {
 
     /**
      * gets a particular warehouse's data
-     * @param id
-     * @return
+     * @param id the id of the warehouse to retrieve
+     * @return returns a response entity with either the warehouse or a BAD_REQUEST status
      */
     @GetMapping("/warehouse")
     public ResponseEntity<Object> getWarehouses(@RequestParam int id)
@@ -67,8 +70,8 @@ public class WarehouseController {
     }
     /**
      * creates a new warehouse
-     * @param warehouse
-     * @return
+     * @param warehouse the warehouse to create
+     * @return the success or failure of creating the warehouse
      */
     @PostMapping("")
     public ResponseEntity<Object> addWarehouse(@RequestBody Warehouse warehouse) {
@@ -84,9 +87,10 @@ public class WarehouseController {
 
     /**
      * updates a warehouse's information
-     * @param id
-     * @param warehouse
-     * @return
+     * transactional operation
+     * @param id the warehouse to update
+     * @param warehouse the information to update the warehouse with
+     * @return returns the success or failure of the operation
      */
     @PutMapping("/warehouse")
     public ResponseEntity<Object> updateWarehouse(@RequestParam Integer id, @RequestBody Warehouse warehouse) {
@@ -99,9 +103,11 @@ public class WarehouseController {
     }
     /**
      * delete a warehouse
+     * Checks existing orders for any items still in the warehouse
      * Will fail if the warehouse has any items inside it
-     * @param id
-     * @return
+     * Transactional operation, will not alter the database unless all operations can be carried out
+     * @param id the id of the warehouse to delete
+     * @return the success or failure of the operation
      */
     @DeleteMapping("/warehouse")
     public ResponseEntity<Object> deleteWarehouse(@RequestParam Integer id)

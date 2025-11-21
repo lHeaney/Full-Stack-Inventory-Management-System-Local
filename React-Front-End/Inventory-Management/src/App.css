@@ -33,6 +33,7 @@ h1, h2, h3{
     color:var(--color-primary);
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+    text-shadow: -2px 0 blank, 1px 0 black, 0 -1px black;
 }
 .table{
     width:100%;
@@ -72,6 +73,7 @@ h1, h2, h3{
     background-color: var(--color-background-dark);
     color: var(--color-accent-tab);
     border: 3 solid black;
+    text-shadow: -2px 0 blank, 1px 0 black, 0 -1px black;
 }
 .button{
     background-color: rgb(73, 42, 2);
@@ -95,4 +97,8 @@ h1, h2, h3{
 }
 .inputBox{
     background-color: #f0f4f8;
+}
+.outlineText{
+    text-shadow: -2px 0 blank, 1px 0 black, 0 -1px black;
+    font-family: fantasy;
 }

@@ -87,7 +87,7 @@ public class InventoryController {
         
     }
     /**
-     * updates an order
+     * updates an order trnsactionally
      * @param id
      * @param order
      * @return
