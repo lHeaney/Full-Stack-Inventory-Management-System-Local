@@ -104,7 +104,7 @@ export default function Warehouses(){
         </Tabs>
     </Box>
     <CustomTabPanel value={value} index = {0}>
-        <WarehouseOverview />
+        <WarehouseOverview warehouseData={warehouses}/>
     </CustomTabPanel>
     <CustomTabPanel value={value} index = {1}>
             <form onSubmit={handleDelete}>
