@@ -7,8 +7,17 @@ import React from "react";
 
 const url = "http://localhost:8080/inventory"
 
+/**
+ * 
+ * @returns returns a form that handles creating new orders
+ */
 export default function OrderForm(){
 
+    /**
+     * handles the submit event, and prompt user to confirm
+     * @param {} event 
+     * @returns 
+     */
     function handleSubmit(event)
     {
         event.preventDefault();

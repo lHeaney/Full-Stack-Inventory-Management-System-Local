@@ -7,6 +7,10 @@ import { useRef } from "react";
 
 const url = "http://localhost:8080/inventory"
 
+/**
+ * 
+ * @returns returns a form that when submit action is called, attempts to transfer inventory items from one warehouse to another
+ */
 export default function TransferOrderForm(){
     const formRef = useRef(null)
 

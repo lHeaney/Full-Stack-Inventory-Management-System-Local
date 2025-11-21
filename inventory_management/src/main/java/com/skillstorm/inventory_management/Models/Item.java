@@ -15,6 +15,8 @@ import jakarta.persistence.Table;
 /**
  *
  * @author firef
+ * This is the model for the rows in the item_data table.
+ * It represents a single item's data
  */
 @Entity
 @Table(name="items_data")
@@ -24,10 +26,8 @@ public class Item {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column
     int item_id;
-
     @Column
     String name;
-
     @Column
     boolean requires_cold;
     @Column
@@ -43,6 +43,18 @@ public class Item {
     @Column
     double size;
 
+    /**
+     * Public Constuctor for Item
+     * 
+     * @param description description of the item
+     * @param expire_days days until the item expires
+     * @param name name of the item
+     * @param requires_cold does the item require cold storage
+     * @param requires_freezing does the item require a freezer
+     * @param requires_room_temp does the item require room-temperature controls
+     * @param sku sku of the item (not checked)
+     * @param size the amount of space a single unit of the item takes up
+     */
     public Item(String description, int expire_days, String name, boolean requires_cold, boolean requires_freezing, boolean requires_room_temp, String sku, double size) {
         this.description = description;
         this.expire_days = expire_days;
@@ -54,6 +66,11 @@ public class Item {
         this.size=size;
     }
 
+    /**
+     * 
+     * @param name
+     * @param sku
+     */
     public Item(String name, String sku) {
     //     this.item_id = 0;
         this.name = name;
@@ -65,10 +82,12 @@ public class Item {
         this.expire_days = -1;
         this.size=1;
     }
-
+    /**
+     * Default empty constructor
+     */
     public Item()
     {
-        // this.item_id = 0;
+        
         this.name = "unknown";
         this.sku = "00000000";
         this.description="No Description Provided";
@@ -78,70 +97,121 @@ public class Item {
         this.expire_days = -1;
         this.size=1;
     }
+    /**
+     * 
+     * @return
+     */
     public int getItem_id() {
         return item_id;
     }
-
+    /**
+     * 
+     * @param item_id
+     */
     public void setItem_id(int item_id) {
         this.item_id = item_id;
     }
-
+    /**
+     * 
+     * @return
+     */
     public String getName() {
         return name;
     }
-
+    /**
+     * 
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
-
+    /**
+     * 
+     * @return
+     */
     public boolean isRequires_cold() {
         return requires_cold;
     }
-
+    /**
+     * 
+     * @param requires_cold
+     */
     public void setRequires_cold(boolean requires_cold) {
         this.requires_cold = requires_cold;
     }
-
+    /**
+     * 
+     * @return
+     */
     public boolean isRequires_freezing() {
         return requires_freezing;
     }
-
+    /**
+     * 
+     * @param requires_freezing
+     */
     public void setRequires_freezing(boolean requires_freezing) {
         this.requires_freezing = requires_freezing;
     }
-
+    /**
+     * 
+     * @return
+     */
     public boolean isRequires_room_temp() {
         return requires_room_temp;
     }
-
+    /**
+     * 
+     * @param requires_room_temp
+     */
     public void setRequires_room_temp(boolean requires_room_temp) {
         this.requires_room_temp = requires_room_temp;
     }
-
+    /**
+     * 
+     * @return
+     */
     public int getExpire_days() {
         return expire_days;
     }
-
+    /**
+     * 
+     * @param expire_days
+     */
     public void setExpire_days(int expire_days) {
         this.expire_days = expire_days;
     }
-
+    /**
+     * 
+     * @return
+     */
     public String getSku() {
         return sku;
     }
-
+    /**
+     * 
+     * @param sku
+     */
     public void setSku(String sku) {
         this.sku = sku;
     }
-
+    /**
+     * 
+     * @return
+     */
     public String getDescription() {
         return description;
     }
-
+    /**
+     * 
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
-
+    /**
+     * 
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -159,7 +229,9 @@ public class Item {
         result = prime * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
-
+    /**
+     * 
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -198,7 +270,9 @@ public class Item {
             return false;
         return true;
     }
-
+    /**
+     * 
+     */
     @Override
     public String toString() {
         return "Item [item_id=" + item_id + ", name=" + name + ", requires_cold=" + requires_cold
@@ -206,11 +280,17 @@ public class Item {
                 + ", expire_days=" + expire_days + ", sku=" + sku + ", description=" + description + ", size=" + size
                 + "]";
     }
-
+    /**
+     * 
+     * @return returns size as a double
+     */
     public double getSize() {
         return size;
     }
-
+    /**
+     * 
+     * @param size
+     */
     public void setSize(double size) {
         this.size = size;
     }

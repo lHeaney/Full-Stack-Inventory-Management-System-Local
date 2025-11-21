@@ -18,9 +18,12 @@ import jakarta.persistence.Table;
 /**
  *
  * @author firef
+ * 
+ * This class represents a single row in the inventory table
+ * It contains the information regarding a deposit of inventoy to a warehouse
  */
 @Entity
-@Table(name="inventory")
+@Table(name="inventory") 
 public class Order {
 
     @Id

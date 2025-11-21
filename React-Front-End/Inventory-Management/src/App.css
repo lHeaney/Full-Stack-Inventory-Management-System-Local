@@ -15,8 +15,8 @@ body{
     font-family: fantasy;
     background-color: var(--color-background-light);
     color:var(--color-text-dark);
-    margin: 2;
-    padding: 2;
+    /* margin: 2;
+    padding: 2; */
     line-height: 1.6;
 }
 #root{
@@ -35,9 +35,9 @@ h1, h2, h3{
     margin-bottom: 0.5em;
 }
 .table{
-    width:200%;
-    margin-top: 10;
-    margin-right: 5%;
+    width:100%;
+    /* margin-top: 10; */
+    /* margin-right: 5%; */
     box-shadow: 0, 4px, 6px, rgba(0, 0, 0, 0.05);
     border-radius: 8px;
     overflow: scroll;
@@ -46,13 +46,14 @@ h1, h2, h3{
 .table th{
     background-color: var(--color-accent-tab);
     /* color:var(--color-text-light); */
-    padding: 10px, 12px;
+    /* padding: 10px, 12px; */
     text-align: center;
 }
 .table td{
-    padding: 10, 12;
+    /* padding: 10, 12; */
     border-bottom: 1px solid var(--color-border-light);
     border: 2px solid #020e1a;
+    text-align: right;
 }
 .table tbody tr:nth-child(even){
     background-color: var(--color-background-dark);
@@ -70,16 +71,18 @@ h1, h2, h3{
 .underTab{
     background-color: var(--color-background-dark);
     color: var(--color-accent-tab);
+    border: 3 solid black;
 }
 .button{
     background-color: rgb(73, 42, 2);
     color: lightcyan;
-    align-self: self-end;
     font-size: medium;
     border-style: dashed;
-    padding: 10px, 10px;
+    padding: 20px, 20px;
+    margin-top: 50;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    font-size: larger;
 
 }
 .button:hover{
@@ -87,5 +90,6 @@ h1, h2, h3{
 }
 .form{
     border: 2px solid black;
-    padding: 3px;
+    background-color: #020e1a;
+    /* padding: 3px; */
 }

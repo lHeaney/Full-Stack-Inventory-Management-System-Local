@@ -26,7 +26,10 @@ function tabProps(index)
         "aria-controls":'tabpanel-${index}',
     }
 }
-
+/**
+ * 
+ * @returns returns three tabs that when selected load different containers beneath them
+ */
 export default function TopBar(){
 
     

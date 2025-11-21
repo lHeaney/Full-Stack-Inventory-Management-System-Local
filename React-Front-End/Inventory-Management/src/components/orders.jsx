@@ -33,8 +33,17 @@ function tabProps(index)
 }
 const url = "http://localhost:8080/inventory"
 
+/**
+ * 
+ * @returns returns a delete container and calls for a table to be populated underneath
+ */
 export default function Orders(){
 
+    /**
+     * handles confirming the user action and then deleting the Order
+     * @param {*} event 
+     * @returns 
+     */
     function handleDelete(event)
     {
 
@@ -71,6 +80,7 @@ export default function Orders(){
         .catch(error=>console.error(error))
     }
 
+    //helper for tab value tracking
     const [value, setValue]=React.useState(0)
     const changetab=(Event, newValue)=>{
         setValue(newValue)
@@ -82,6 +92,7 @@ export default function Orders(){
         })
         .catch(error=>console.error(error))
     }
+    //holder for information retrieved from backend
     const [orders, setOrders] = useState([]);
     useEffect(()=>{
         fetch(url)
@@ -93,6 +104,9 @@ export default function Orders(){
         .catch(error=>console.error(error))
     }, [])
 
+    /**
+     * creates a tab list at the top, and depending on the selected tab creates different containers below
+     */
     return(
     <>
     <Box sx = {{borderBottom:1, borderColor:'divider'}}>
@@ -104,12 +118,13 @@ export default function Orders(){
     </Box>
     <CustomTabPanel value={value} index = {0}>
     <form onSubmit={handleDelete}>
-                <Grid container spacing={2}>
-                    <Grid size={4}>
-                        <TextField id="order_delete" name="order_delete" type="number"/>
+                <Grid container spacing={2} margin={3}>
+                <Grid size={3}></Grid>
+                <Grid size={3}>
+                        <TextField id="order_delete" name="order_delete" type="number" size="small"/>
                     </Grid>
-                    <Grid size={8}>
-                        <button type="submit">Delete Order</button>
+                    <Grid size={6}>
+                        <button className="button" type="submit">Delete Order</button>
                     </Grid>
                 </Grid>
             </form>

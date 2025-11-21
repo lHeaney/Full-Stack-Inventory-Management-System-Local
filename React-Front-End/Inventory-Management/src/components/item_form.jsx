@@ -12,6 +12,12 @@ import { useRef } from "react";
 
 const url = "http://localhost:8080/items_data/items"
 
+/**
+ * Creates a form for creating new items
+ * Submission requires confirming the popup
+ * Form is displayed in a grid
+ * @returns 
+ */
 export default function ItemForm(){
     const formRef =useRef(null)
     const[freezing, setFreezing] = useState(false)

@@ -4,6 +4,12 @@ import Table from "@mui/material/Table";
 import '../App.css/'
 
 
+/**
+ * returns a table containing the list of items and their information
+ * Requires that the items be passed into the function
+ * @param {*} param0 
+ * @returns 
+ */
 export default function ItemTable({itemData}){
 
 

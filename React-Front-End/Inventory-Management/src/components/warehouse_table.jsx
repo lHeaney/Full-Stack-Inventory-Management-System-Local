@@ -6,6 +6,12 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import '../App.css/'
 
+
+/**
+ * This creates a table of warehouses based off of the data passed into the function
+ * @param {*} param0 
+ * @returns 
+ */
 export default function WarehouseTable({warehouseData}){
 
 

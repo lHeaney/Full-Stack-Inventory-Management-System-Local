@@ -11,6 +11,10 @@ import DialogTitle from '@mui/material/DialogTitle'
 const url = "http://localhost:8080/warehouses"
 
 
+/**
+ * 
+ * @returns returns a form for creating a new warehouse
+ */
 export default function WarehouseForm(){
     const formRef = useRef(null)
 

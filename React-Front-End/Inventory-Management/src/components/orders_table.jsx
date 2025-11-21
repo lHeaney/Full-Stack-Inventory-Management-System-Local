@@ -8,7 +8,11 @@ import '../App.css/'
 
 
 const url = "http://localhost:8080/items_data"
-
+/**
+ * Creates a table containing a list of orders passed into it as {orderData}
+ * @param {*} param0 
+ * @returns 
+ */
 export default function OrderTable({orderData}){
 
     const [items, setItems] = useState([]);
@@ -43,7 +47,7 @@ export default function OrderTable({orderData}){
                 return(<>
                     <tr key={order.order_number}>
                         <td>{order.order_number}</td>
-                        <td>#{items[order.item_id-2]}</td>
+                        <td>{(""+items[order.item_id-3]).split("|")[1]}</td>
                         <td>#{order.warehouseid}</td>
                         <td>{order.amount}</td>
                         <td>{null==order?.expiration_date ||order?.expiration_date<1 ? "never" : order.expiration_date +" days"}</td>

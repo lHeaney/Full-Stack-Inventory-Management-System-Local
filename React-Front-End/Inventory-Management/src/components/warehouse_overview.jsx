@@ -6,7 +6,11 @@ import Table from '@mui/material/Table';
 import { Grid, padding, width } from "@mui/system";
 
 
-
+/**
+ * A function for creating pie charts for each warehouse and loading data into them
+ * @param {*} param0 
+ * @returns 
+ */
 export default function WarehouseOverview({warehouseData})
 {
     return(<>
