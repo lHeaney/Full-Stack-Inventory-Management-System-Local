@@ -26,7 +26,7 @@ import com.skillstorm.inventory_management.Services.WarehouseService;
 
 
 /**
- *
+ * handles the /warehouses endpoints
  * @author firef
  */
 @RestController
@@ -39,12 +39,21 @@ public class WarehouseController {
         this.warehouseService = warehouseService;
     }
 
+    /**
+     * gets a list of all warehouses
+     * @return
+     */
     @GetMapping()
     public ResponseEntity<List<Warehouse>> getWarehouses() {
 
         return new ResponseEntity<>(warehouseService.getAllWarehouseList(), HttpStatus.OK);
     }
 
+    /**
+     * gets a particular warehouse's data
+     * @param id
+     * @return
+     */
     @GetMapping("/warehouse")
     public ResponseEntity<Object> getWarehouses(@RequestParam int id)
     {
@@ -56,6 +65,11 @@ public class WarehouseController {
         
         
     }
+    /**
+     * creates a new warehouse
+     * @param warehouse
+     * @return
+     */
     @PostMapping("")
     public ResponseEntity<Object> addWarehouse(@RequestBody Warehouse warehouse) {
        
@@ -68,6 +82,12 @@ public class WarehouseController {
         }
     }
 
+    /**
+     * updates a warehouse's information
+     * @param id
+     * @param warehouse
+     * @return
+     */
     @PutMapping("/warehouse")
     public ResponseEntity<Object> updateWarehouse(@RequestParam Integer id, @RequestBody Warehouse warehouse) {
         try {
@@ -77,10 +97,16 @@ public class WarehouseController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+    /**
+     * delete a warehouse
+     * Will fail if the warehouse has any items inside it
+     * @param id
+     * @return
+     */
     @DeleteMapping("/warehouse")
     public ResponseEntity<Object> deleteWarehouse(@RequestParam Integer id)
     {
-        System.out.println("Deleting warehouse "+id+".....");
+        
         try {
              warehouseService.deleteWarehouseById(id);
         } catch (Exception e) {

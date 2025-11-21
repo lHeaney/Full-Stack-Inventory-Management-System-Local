@@ -27,7 +27,7 @@ import com.skillstorm.inventory_management.Services.ItemDataService;
 
 
 /**
- *
+ *Handles the /items_data endpoints
  * @author firef
  */
 @RestController
@@ -42,22 +42,40 @@ public class ItemController {
 
     
 
+    /**
+     * returns a list of all items
+     * @return
+     */
     @GetMapping("")
     public List<Item> getAllItems() {
         
         return itemDataService.getItemList();
     }
+    /**
+     * Returns a specific item 
+     * @param id
+     * @return
+     */
     @GetMapping("/item")
     public Item getItem(@RequestParam int id) {
         return itemDataService.getItemById(id);
     }
-    
+    /**
+     * updates a particular item's data
+     * @param id
+     * @param item
+     * @return
+     */
     @PutMapping("item")
     public boolean updateItemData(@RequestParam int id, @RequestBody Item item) {
         return itemDataService.putItem(id,item);
     }
 
-  
+  /**
+   * creates a new item
+   * @param item
+   * @return
+   */
     @PostMapping(value="/items")
     public boolean addNewItem(@RequestBody Item item){
 
@@ -78,6 +96,12 @@ public class ItemController {
                 );
 
     }
+    /**
+     * attempts to delete an item from the database
+     * Will fail if the item is listed in any warehouse inventory
+     * @param id
+     * @return
+     */
     @DeleteMapping("/item")
     public ResponseEntity<Object> deleteItem(@RequestParam int id)
     {

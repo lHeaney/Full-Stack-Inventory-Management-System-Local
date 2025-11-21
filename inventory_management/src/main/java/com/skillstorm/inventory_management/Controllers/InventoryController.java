@@ -28,6 +28,7 @@ import com.skillstorm.inventory_management.Services.InventoryService;
 /**
  *
  * @author firef
+ * Controller for /inventory endpoint
  */
 @RestController
 @CrossOrigin()
@@ -41,33 +42,67 @@ public class InventoryController {
         this.inventoryService = ivService;
     }
 
+    /**
+     * handles returning a list of all orders
+     * @return
+     */
     @GetMapping("")
     public List<Order> getOrders() {
        return  inventoryService.findAllOrders();
     }
+    /**
+     * returns one specific order by id
+     * @param id
+     * @return
+     */
     @GetMapping("order")
     public Optional<Order> getOrderById(@RequestParam int id) {
         return inventoryService.findOrderById(id);
     }
+    /**
+     * Transfer items from origin to destination warehouse
+     * this is accomplished by:
+     * removing items from existing orders attached to the origin warehouse
+     * and the creating a new order for the destination warehouse
+     * this functions transactionally, either the tranfer goes through entirely or nothing happens
+     * @param warehouseOrigin
+     * @param warehouseDestination
+     * @param item_id
+     * @param amount
+     * @return
+     */
     @PostMapping("/transfer")
     public ResponseEntity<Object> postTranferOrder(@RequestParam int warehouseOrigin,
                                                     @RequestParam int warehouseDestination,
                                                     @RequestParam int item_id,
                                                     @RequestParam int amount
      ) {
-
-        System.out.println(""+warehouseDestination+" "+warehouseOrigin+" "+item_id+" "+amount);
-        inventoryService.tranferGoods( warehouseOrigin, warehouseDestination, item_id,amount);
+        try {
+            inventoryService.tranferGoods(warehouseOrigin, warehouseDestination, item_id, amount);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         
-        return new ResponseEntity<>(HttpStatus.OK);
+        
     }
-    
+    /**
+     * updates an order
+     * @param id
+     * @param order
+     * @return
+     */
     @PutMapping("order")
     public boolean updateOrder(@RequestParam int id, @RequestBody Order order) {
         
         return inventoryService.updateOrder(id, order);
         
     }
+    /**
+     * creates a new order
+     * @param order
+     * @return
+     */
     @PostMapping("order")
     public ResponseEntity<Object> addOrderToDatabase(@RequestBody Order order) {
 
@@ -81,7 +116,11 @@ public class InventoryController {
         }
     }
     
-
+    /**
+     * deletes the specified order
+     * @param id
+     * @return
+     */
     @DeleteMapping("/order")
     public ResponseEntity<Object> deleteOrder(@RequestParam Integer id)
     {
